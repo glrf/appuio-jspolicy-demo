@@ -1,0 +1,8 @@
+apiVersion: policy.jspolicy.com/v1beta1
+kind: JsPolicy
+metadata:
+  name: set-active-deadline-seconds.glrf.xyz
+spec:
+  operations: [CREATE]
+  resources: [pods]
+  type: Mutating

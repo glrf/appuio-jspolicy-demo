@@ -1,6 +1,6 @@
 # APPUiO jspolicy Demo
 
-This is a demo project to showcase the capabilites of jspolicy for writing policies for APPUiA
+This is a demo project to showcase the capabilites of jspolicy for writing policies for APPUiO
 
 
 ## Setup
@@ -86,6 +86,46 @@ This policy ensures that there is a LimitRange every user namespace.
 `src/policies/set-active-deadline-seconds`
 
 This policy ensures that all "runonce" pods have .spec.activeDeadlineSeconds set.
+
+#### Demo
+
+* Create a runonce pod without a deadline
+
+      kubectl apply -f demo/active-deadline/hello.yaml
+
+  The pod will get a default value for `activeDeadlineSeconds` of `1800`.
+  You can observe this with
+
+      kubectl get pod hello -o yaml
+
+* Create a runonce pod with a deadline
+
+      kubectl apply -f demo/active-deadline/hello-deadline.yaml
+
+  The pod will keep it's deadline of `activeDeadlineSeconds` of `142`.
+  You can observe this with
+
+      kubectl get pod hello-deadline -o yaml
+
+* Create a job without a deadline
+
+      kubectl apply -f demo/active-deadline/job.yaml
+
+  The pod resulting from the job will get a default value for `activeDeadlineSeconds` of `1800`.
+  You can observe this with
+      
+      # Find pod created by job (similar to hello-2h2r)
+      kubectl get pod
+      kubectl get pod <job-pod> -o yaml
+
+* Create a long running job, i.e. with `restart: Always`.
+
+      kubectl apply -f demo/active-deadline/nginx.yaml
+  
+  The pod will not get a deadline.
+  You can observe this with
+
+      kubectl get pod nginx -o yaml
 
 
 ### Patching default namespace
