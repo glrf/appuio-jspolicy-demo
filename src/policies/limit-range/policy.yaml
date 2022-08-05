@@ -1,0 +1,12 @@
+apiVersion: policy.jspolicy.com/v1beta1
+kind: JsPolicy
+metadata:
+  name: limit-range.glrf.xyz
+spec:
+  operations: [CREATE, DELETE]
+  resources: [namespaces, limitranges]
+  namespaceSelector:
+    matchExpressions:
+      - key: group
+        operator: Exists
+  type: Controller
