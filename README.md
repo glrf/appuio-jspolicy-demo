@@ -146,11 +146,3 @@ This policy ensures that all "runonce" pods have .spec.activeDeadlineSeconds set
 
       kubectl get pod nginx -o yaml
 
-
-### Patching default namespace
-
-`src/policies/patch-default-namespace`
-
-This policy esures that the default namespace has some fixed labels and any change will be reverted.
-
-NOTE: This is a POC policy to show that we can patch existing resources and could implement a similar feature set as [resource-locker](https://github.com/redhat-cop/resource-locker-operator)
