@@ -80,6 +80,25 @@ If a user does not add a label `group` the policy will add the users default gro
 `src/policies/ensure-default-objects`
 
 This policy ensures that there is a LimitRange every user namespace.
+It currently just creates a hard coded limit range, but could easily be extendend to work differently.
+
+
+#### Demo
+
+* Look at LimitRange in created `foo` namespace
+
+      kubectl -n foo get limitrange
+
+  There is a `default` limit range
+
+* Delete LimitRange in `foo` and observe it being recreated
+
+      kubectl -n foo delete limitrange default
+      kubectl -n foo get limitrange
+
+* There is no LimitRange in non user namespace `default`
+
+      kubectl get limitrange
 
 ### Default Active Deadline Seconds
 
