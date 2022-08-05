@@ -1,0 +1,8 @@
+apiVersion: policy.jspolicy.com/v1beta1
+kind: JsPolicy
+metadata:
+  name: enforce-group-label.glrf.xyz
+spec:
+  operations: [CREATE, UPDATE]
+  resources: [namespaces]
+  type: Mutating

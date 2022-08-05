@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  bob: buzz
+kind: ConfigMap
+metadata:
+  name: default-groups
+  namespace: default
